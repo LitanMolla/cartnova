@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import Container from '../components/Container'
+import Pagination from '../components/Pagination'
 
 const Products = () => {
     return (
@@ -50,6 +51,11 @@ const Products = () => {
                                             <option value="36">36</option>
                                         </select>
                                     </div>
+                                </div>
+                                <div className="">
+                                    <Pagination
+                                        itemsPerPage={9}
+                                    />
                                 </div>
                             </div>
                         </div>
