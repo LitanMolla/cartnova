@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import Product from './Product';
 
-// const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-
 function Items({ currentItems }) {
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4'>
             {
                 currentItems.map((item, index) => (
                     <Product
@@ -48,18 +46,21 @@ function Pagination({ itemsPerPage }) {
     return (
         <>
             <Items currentItems={currentItems} />
-            <ReactPaginate
-                breakLabel="..."
-                nextLabel={<button className='h-12 w-12 flex text-center justify-center items-center border border-[#D8D8D8] text-[#767676] cursor-pointer duration-300 hover:bg-[#262626] hover:text-white'>&gt;</button>}
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel={<button className='h-12 w-12 flex text-center justify-center items-center border border-[#D8D8D8] text-[#767676] cursor-pointer duration-300 hover:bg-[#262626] hover:text-white'>&lt;</button>}
-                renderOnZeroPageCount={null}
-                containerClassName='flex gap-4 mt-12 items-center'
-                pageLinkClassName='h-12 w-12 flex text-center justify-center items-center border border-[#D8D8D8] text-[#767676] cursor-pointer duration-300 hover:bg-[#262626] hover:text-white'
-                activeLinkClassName='h-12 w-12 flex text-center justify-center items-center border border-[#262626] cursor-pointer duration-300 bg-[#262626] text-white'
-            />
+            <div className="flex justify-between items-center  mt-12 flex-col md:flex-row gap-6">
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel={<button className='h-12 w-12 flex text-center justify-center items-center border border-[#D8D8D8] text-[#767676] cursor-pointer duration-300 hover:bg-[#262626] hover:text-white'>&gt;</button>}
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    previousLabel={<button className='h-12 w-12 flex text-center justify-center items-center border border-[#D8D8D8] text-[#767676] cursor-pointer duration-300 hover:bg-[#262626] hover:text-white'>&lt;</button>}
+                    renderOnZeroPageCount={null}
+                    containerClassName='flex gap-4 items-center'
+                    pageLinkClassName='h-12 w-12 flex text-center justify-center items-center border border-[#D8D8D8] text-[#767676] cursor-pointer duration-300 hover:bg-[#262626] hover:text-white'
+                    activeLinkClassName='h-12 w-12 flex text-center justify-center items-center border border-[#262626] cursor-pointer duration-300 bg-[#262626] text-white'
+                />
+                <p className='text-base text-dark'>Products from {itemOffset} to {endOffset < data.length ? endOffset : data.length} of {data.length}</p>
+            </div>
         </>
     );
 }

@@ -54,7 +54,7 @@ const Navbar = () => {
             </div>
             <div className="flex gap-5">
               <button className="flex gap-1 cursor-pointer"><FaUser /> <FaCaretDown /></button>
-              <button><FaShoppingCart className="cursor-pointer" /></button>
+              <Link to='cart'><button><FaShoppingCart className="cursor-pointer" /></button></Link>
             </div>
           </div>
         </Container>

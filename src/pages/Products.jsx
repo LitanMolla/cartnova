@@ -11,7 +11,7 @@ const Products = () => {
                     <p className='text-xs text-dark'><Link className='duration-300 hover:text-main hover:font-bold' to='/'>Home</Link>  &gt;  <Link className='duration-300 hover:text-main hover:font-bold' to={'/products'}>Products</Link></p>
                     <div className="mt-10 md:mt-20">
                         <div className="flex gap-10">
-                            <div className="w-90">
+                            <div className="w-90 hidden lg:block">
                                 <h4 className='text-xl font-bold mb-8'>Shop by Category</h4>
                                 <ul>
                                     <li> <Link className='text-dark border-b border-[#F0F0F0] py-3 block'>Category 1</Link> </li>
@@ -38,7 +38,7 @@ const Products = () => {
                                 </ul>
                             </div>
                             <div className="flex-1">
-                                <div className="flex gap-6 justify-end">
+                                <div className="flex gap-6 justify-end mb-6">
                                     <div className="flex text-dark text-base gap-2 items-center">
                                         <p>Sort by:</p>
                                         <select className='border border-dark px-2 py-1'>
