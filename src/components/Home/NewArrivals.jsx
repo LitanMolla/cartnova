@@ -67,6 +67,7 @@ const NewArrivals = () => {
                                                 price={item.price}
                                                 title={item.title}
                                                 id={item.id}
+                                                alt={item.title}
                                             />
                                         </div>
                                     ))
