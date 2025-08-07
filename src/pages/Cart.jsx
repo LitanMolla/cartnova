@@ -5,20 +5,20 @@ import { IoClose } from 'react-icons/io5'
 import Btn from '../components/Btn'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { removecartitem } from '../slices/adToCartSlice'
+import { decreaseQuantity, increaseQuantity, removecartitem } from '../slices/adToCartSlice'
 
 const Cart = () => {
     let data = useSelector((state) => state.adtocart.value)
     // console.log(data);
     let dispatch = useDispatch()
-    let [totalPrice,setTotalPrice]=useState(0)
-    useEffect(()=>{
+    let [totalPrice, setTotalPrice] = useState(0)
+    useEffect(() => {
         let total = 0;
-        data.map((item)=>{
-            total+=item.price * item.quantity
+        data.map((item) => {
+            total += item.price * item.quantity
         })
         setTotalPrice(total)
-    },[data])
+    }, [data])
     return (
         <>
             <section className='py-10 md:py-20'>
@@ -41,24 +41,24 @@ const Cart = () => {
                                 {
                                     data.map((item) => (
                                         <tr>
-                                            <td className='p-5 border border-light'>
+                                            <td className='md:p-5 p-3 border border-light'>
                                                 <div className="flex items-center gap-3 flex-col md:flex-row">
-                                                    <button onClick={()=>{dispatch(removecartitem(item))}} className='cursor-pointer'><IoClose /></button>
-                                                    <img className='w-25' src={item.image} alt={item.title} />
+                                                    <button onClick={() => { dispatch(removecartitem(item)) }} className='cursor-pointer'><IoClose /></button>
+                                                    <img className='w-15 md:w-25' src={item.image} alt={item.title} />
                                                     <h4 className='text-lg font-bold'>{item.title}</h4>
                                                 </div>
                                             </td>
-                                            <td className='text-xl font-bold p-5 border border-light'>${item.price}</td>
-                                            <td className='p-5 border border-light'>
+                                            <td className='text-base md:text-xl font-bold p-5 border border-light'>${item.price.toFixed(2)}</td>
+                                            <td className='p-3 md:p-5 border border-light'>
                                                 <div className="border border-light inline-block px-5 py-1">
                                                     <div className="flex gap-5 flex-col md:flex-row">
-                                                        <button className='cursor-pointer'>-</button>
+                                                        <button onClick={() => { dispatch(decreaseQuantity(item)) }} className='cursor-pointer'>-</button>
                                                         <button>{item.quantity}</button>
-                                                        <button className='cursor-pointer'>+</button>
+                                                        <button onClick={() => { dispatch(increaseQuantity(item)) }} className='cursor-pointer'>+</button>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className='text-xl font-bold p-5 border border-light'>${item.price * item.quantity}</td>
+                                            <td className='md:text-xl text-base font-bold p-3 md:p-5 border border-light'>${(item.price * item.quantity).toFixed(2)}</td>
                                         </tr>
                                     ))
                                 }

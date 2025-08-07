@@ -21,9 +21,23 @@ export const adToCartSlice = createSlice({
                 }
             })
         },
+        increaseQuantity: (state, action) => {
+            state.value.find((item) => {
+                if (item.id === action.payload.id) {
+                    item.quantity++
+                }
+            })
+        },
+        decreaseQuantity: (state, action) => {
+            state.value.find((item) => {
+                if (item.id === action.payload.id) {
+                    item.quantity > 1 ? item.quantity-- : ''
+                }
+            })
+        },
     },
 })
 
-export const { addtocart, removecartitem } = adToCartSlice.actions
+export const { addtocart, removecartitem, increaseQuantity, decreaseQuantity } = adToCartSlice.actions
 
 export default adToCartSlice.reducer
